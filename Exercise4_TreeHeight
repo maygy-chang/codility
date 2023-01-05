@@ -38,3 +38,20 @@ Assumptions
 Write an efficient algorithm for the following assumptions:
 N is an integer within the range [1..1,000];
 the height of tree T (number of edges on the longest path from root to leaf) is within the range [0..500].
+# you can write to stdout for debugging purposes, e.g.
+# print("this is a debug message")
+
+from extratypes import Tree  # library with types used in the task
+
+def get_tree_depth(T):
+    if T is None:
+        return 0
+    depth_left = get_tree_depth(T.l)
+    depth_right = get_tree_depth(T.r)
+    return max(depth_left, depth_right) + 1
+
+
+def solution(T):
+    # Implement your solution here
+    return get_tree_depth(T) - 1
+
