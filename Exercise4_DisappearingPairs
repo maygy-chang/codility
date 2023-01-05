@@ -17,3 +17,16 @@ Finally, for string S = "BABABA" the function must return "BABABA", because no r
 Write an efficient algorithm for the following assumptions:
 the length of string S is within the range [0..50,000];
 string S is made only of the following characters: "A", "B" and/or "C".
+
+# you can write to stdout for debugging purposes, e.g.
+# print("this is a debug message")
+
+def solution(S):
+    # Implement your solution here
+    data_list = []
+    for c in S:
+        if data_list and data_list[-1] == c:
+            data_list.pop(-1)
+        else:
+            data_list.append(c)
+    return "".join(data_list)
