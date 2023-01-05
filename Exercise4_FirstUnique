@@ -32,16 +32,15 @@ each element of array A is an integer within the range [0..1,000,000,000].
 # you can write to stdout for debugging purposes, e.g.
 # print("this is a debug message")
 
+# you can write to stdout for debugging purposes, e.g.
+# print("this is a debug message")
+from collections import defaultdict
+
 def solution(A):
-    # Implement your solution here
-    data_list = []
-    value = -1
-    for i in range(len(A)):
-        a = A[i]
-        if a not in data_list:
-            if a not in A[i+1:]:
-                value = a
-                break
-            else:
-                data_list.append(a)
-    return value
+    data = defaultdict(int)
+    for a in A:
+        data[a] += 1
+    for k, v in data.items():
+        if v == 1:
+            return k
+    return -1    
