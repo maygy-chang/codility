@@ -11,3 +11,15 @@ Given a string:
 the function should return 0, because both substrings are empty.
 Write an efficient algorithm for the following assumptions:
 the length of string S is within the range [0..2,000,000].
+
+# you can write to stdout for debugging purposes, e.g.
+# print("this is a debug message")
+
+def solution(S):
+    # Implement your solution here
+    if len(S) > 0:
+        medium = len(S) // 2
+        firstpart, secondpart = S[:medium], S[medium+1:]
+        if firstpart == secondpart[::-1]:
+            return medium
+    return -1
