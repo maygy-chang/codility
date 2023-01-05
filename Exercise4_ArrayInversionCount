@@ -12,3 +12,41 @@ so the function should return 4.
 Write an efficient algorithm for the following assumptions:
 N is an integer within the range [0..100,000];
 each element of array A is an integer within the range [−2,147,483,648..2,147,483,647].
+
+# you can write to stdout for debugging purposes, e.g.
+# print("this is a debug message")
+
+def merge(a):
+    length = len(a)
+    if length <= 1:
+        return a, 0
+    middle = length // 2
+    left_list, left_count = merge(a[:middle])
+    right_list, right_count = merge(a[middle:])
+    count = left_count + right_count
+    sorted_list = []
+    while left_list and right_list:
+        if left_list[0] > right_list[0]:
+            len_left = len(left_list)
+            count += len_left
+            small = right_list.pop(0)
+            sorted_list.append(small)
+        else:
+            small = left_list.pop(0)
+            sorted_list.append(small)
+    if left_list:
+        sorted_list += left_list
+    else:
+        sorted_list += right_list
+    return sorted_list, count
+
+
+def solution(A):
+    # Implement your solution here
+    length = len(A)
+    if length <= 1:
+        return 0
+    count = merge(A)[1]
+    if count >= 1e9:
+        return -1
+    return count
